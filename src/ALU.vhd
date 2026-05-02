@@ -79,6 +79,6 @@ begin
         end if;
 
         o_result <= std_logic_vector(v_out);
-        o_flags <= Z & C & N & V;
+        o_flags <= N & Z & C & V;
     end process;
 end Behavioral;
