@@ -47,6 +47,11 @@ begin
                 v_result := ('0' & v_A) + ('0' & v_B);
             when "001" => -- SUB
                 v_result := ('0' & v_A) - ('0' & v_B);
+                if v_A >= v_B then
+                    C := '1'; -- no borrow
+                else
+                    C := '0'; -- borrow occurred
+                end if;
             when "010" => -- AND
                 v_result := ('0' & (v_A and v_B));
             when "011" => -- OR
