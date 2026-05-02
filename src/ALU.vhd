@@ -58,7 +58,12 @@ begin
         v_out := v_result(7 downto 0);
 
         -- Flags
-        Z := '1' when v_out = 0 else '0';
+        if v_out = 0 then
+            Z := '1';
+        else
+            Z := '0';
+        end if;
+
         C := v_result(8);
         N := v_out(7);
 
