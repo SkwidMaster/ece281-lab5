@@ -22,6 +22,7 @@
 --+----------------------------------------------------------------------------
 library IEEE;
 use IEEE.std_logic_1164.all;
+use IEEE.NUMERIC_STD.ALL;
 
 architecture top_basys3_arch of top_basys3 is 
 
