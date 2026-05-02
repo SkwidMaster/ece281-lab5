@@ -43,22 +43,30 @@ begin
         v_B := unsigned(i_B);
 
         case i_op is
-            when "000" => -- ADD
-                v_result := ('0' & v_A) + ('0' & v_B);
-            when "001" => -- SUB
-                v_result := ('0' & v_A) - ('0' & v_B);
-                if v_A >= v_B then
-                    C := '1'; -- no borrow
-                else
-                    C := '0'; -- borrow occurred
-                end if;
-            when "010" => -- AND
-                v_result := ('0' & (v_A and v_B));
-            when "011" => -- OR
-                v_result := ('0' & (v_A or v_B));
-            when others =>
-                v_result := (others => '0');
-        end case;
+    when "000" => -- ADD
+        v_result := ('0' & v_A) + ('0' & v_B);
+        C := v_result(8);
+
+    when "001" => -- SUB
+        v_result := ('0' & v_A) - ('0' & v_B);
+        if v_A >= v_B then
+            C := '1';
+        else
+            C := '0';
+        end if;
+
+    when "010" => -- AND
+        v_result := ('0' & (v_A and v_B));
+        C := '0';
+
+    when "011" => -- OR
+        v_result := ('0' & (v_A or v_B));
+        C := '0';
+
+    when others =>
+        v_result := (others => '0');
+        C := '0';
+end case;
 
         v_out := v_result(7 downto 0);
 
@@ -69,7 +77,7 @@ begin
             Z := '0';
         end if;
 
-        C := v_result(8);
+        -- C := v_result(8);
         N := v_out(7);
 
         -- Simple overflow detection (only valid for add/sub)
