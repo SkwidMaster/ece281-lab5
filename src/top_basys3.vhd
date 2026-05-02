@@ -24,6 +24,21 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.NUMERIC_STD.ALL;
 
+entity top_basys3 is
+    port(
+        -- inputs
+        clk     : in std_logic; -- 100 MHz clock
+        sw      : in std_logic_vector(7 downto 0); -- switches
+        btnU    : in std_logic; -- reset
+        btnC    : in std_logic; -- FSM advance
+
+        -- outputs
+        led     : out std_logic_vector(15 downto 0);
+        seg     : out std_logic_vector(6 downto 0);
+        an      : out std_logic_vector(3 downto 0)
+    );
+end top_basys3;
+
 architecture top_basys3_arch of top_basys3 is 
 
     -- ALU/FSM signals
